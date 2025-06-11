@@ -2,6 +2,7 @@ package net.frezzydy.tutorialmod.item;
 
 import net.frezzydy.tutorialmod.TutorialMod;
 import net.frezzydy.tutorialmod.item.custom.ChiselItem;
+import net.frezzydy.tutorialmod.item.custom.ModFoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,6 +20,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> CHISEL = ITEMS.register("chisel",
             () -> new ChiselItem(new Item.Properties().durability(32)));
+
+    public static final RegistryObject<Item> KOHLRABI = ITEMS.register("kohlrabi",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.KOHLRABI)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
