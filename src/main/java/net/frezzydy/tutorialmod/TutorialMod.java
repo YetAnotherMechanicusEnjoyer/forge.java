@@ -2,6 +2,7 @@ package net.frezzydy.tutorialmod;
 
 import com.mojang.logging.LogUtils;
 import net.frezzydy.tutorialmod.block.ModBlocks;
+import net.frezzydy.tutorialmod.item.ModCreativeModeTabs;
 import net.frezzydy.tutorialmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +38,8 @@ public class TutorialMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
