@@ -34,8 +34,11 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.ALEXANDRITE_BLOCK.get());
                         output.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK.get());
+
                         output.accept(ModBlocks.ALEXANDRITE_ORE.get());
                         output.accept(ModBlocks.ALEXANDRITE_DEEPSLATE_ORE.get());
+
+                        output.accept(ModBlocks.MAGIC_BLOCK.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

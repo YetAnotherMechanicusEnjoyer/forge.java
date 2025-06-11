@@ -1,6 +1,7 @@
 package net.frezzydy.tutorialmod.block;
 
 import net.frezzydy.tutorialmod.TutorialMod;
+import net.frezzydy.tutorialmod.block.custom.MagicBlock;
 import net.frezzydy.tutorialmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -33,6 +34,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> ALEXANDRITE_DEEPSLATE_ORE = registryBlock("alexandrite_deepslate_ore",
             () -> new DropExperienceBlock(UniformInt.of(3, 6), BlockBehaviour.Properties.of()
                     .strength(5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
+
+    public static final RegistryObject<Block> MAGIC_BLOCK = registryBlock("magic_block",
+            () -> new MagicBlock(BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));
 
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
