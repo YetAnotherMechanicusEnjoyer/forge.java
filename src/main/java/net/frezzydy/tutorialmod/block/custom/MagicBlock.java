@@ -23,34 +23,36 @@ import java.util.List;
 
 public class MagicBlock extends Block {
 
-    public MagicBlock(Properties properties) {
-        super(properties);
-    }
+  public MagicBlock(Properties properties) {
+    super(properties);
+  }
 
-    @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
-                                                        @NotNull Player pPlayer, @NotNull BlockHitResult pHitResult) {
-        pLevel.playSound(pPlayer, pPos, SoundEvents.AMETHYST_CLUSTER_PLACE, SoundSource.BLOCKS, 1f, 1f);
-        return InteractionResult.SUCCESS;
-    }
+  @Override
+  protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos,
+      @NotNull Player pPlayer, @NotNull BlockHitResult pHitResult) {
+    pLevel.playSound(pPlayer, pPos, SoundEvents.AMETHYST_CLUSTER_PLACE, SoundSource.BLOCKS, 1f, 1f);
+    return InteractionResult.SUCCESS;
+  }
 
-    @Override
-    public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState, @NotNull Entity pEntity) {
-        if (pEntity instanceof ItemEntity itemEntity) {
-            if (isValidItem(itemEntity.getItem())) {
-                itemEntity.setItem(new ItemStack(ModItems.CHISEL.get()));
-            }
-        }
-        super.stepOn(pLevel, pPos, pState, pEntity);
+  @Override
+  public void stepOn(@NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pState,
+      @NotNull Entity pEntity) {
+    if (pEntity instanceof ItemEntity itemEntity) {
+      if (isValidItem(itemEntity.getItem())) {
+        itemEntity.setItem(new ItemStack(ModItems.CHISEL.get()));
+      }
     }
+    super.stepOn(pLevel, pPos, pState, pEntity);
+  }
 
-    private boolean isValidItem(ItemStack item) {
-        return item.is(ModTags.Items.TRANSFORMABLE_ITEM);
-    }
+  private boolean isValidItem(ItemStack item) {
+    return item.is(ModTags.Items.TRANSFORMABLE_ITEM);
+  }
 
-    @Override
-    public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
-        pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.magic_block"));
-        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
-    }
+  @Override
+  public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext,
+      List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
+    pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.magic_block"));
+    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+  }
 }

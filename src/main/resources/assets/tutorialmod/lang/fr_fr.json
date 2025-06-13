@@ -1,24 +1,25 @@
 {
   "item.tutorialmod.alexandrite": "Gemme d'Alexandrite",
   "item.tutorialmod.raw_alexandrite": "Alexandrite Brut",
-
   "item.tutorialmod.chisel": "Ciseau",
-
   "item.tutorialmod.kohlrabi": "Kohlrabi",
-
   "item.tutorialmod.aurora_ashes": "Cendres d'Aurora",
-
   "block.tutorialmod.alexandrite_block": "Bloc d'Alexandrite",
   "block.tutorialmod.raw_alexandrite_block": "Bloc d'Alexandrite Brut",
-
   "block.tutorialmod.alexandrite_ore": "Minerai d'Alexandrite",
   "block.tutorialmod.alexandrite_deepslate_ore": "Minerai d'Alexandrite des Abîmes",
-
   "block.tutorialmod.magic_block": "Bloc Magique",
-
+  "block.tutorialmod.alexandrite_stairs": "Escalier en Alexandrite",
+  "block.tutorialmod.alexandrite_slab": "Dalle d'Alexandrite",
+  "block.tutorialmod.alexandrite_button": "Bouton en Alexandrite",
+  "block.tutorialmod.alexandrite_pressure_plate": "Plaque de Pression en Alexandrite",
+  "block.tutorialmod.alexandrite_fence": "Barrière en Alexandrite",
+  "block.tutorialmod.alexandrite_fence_gate": "Portillon en Alexandrite",
+  "block.tutorialmod.alexandrite_wall": "Muret d'Alexandrite",
+  "block.tutorialmod.alexandrite_door": "Porte en Alexandrite",
+  "block.tutorialmod.alexandrite_trapdoor": "Trappe en Alexandrite",
   "creativetab.tutorialmod.alexandrite_items": "Alexandrite Items",
   "creativetab.tutorialmod.alexandrite_blocks": "Alexandrite Blocks",
-
   "tooltip.tutorialmod.magic_block": "Ce Bloc est vachement §9MAGIQUE§r",
   "tooltip.tutorialmod.chisel": "Presser §eShift§r pour plus d'Informations",
   "tooltip.tutorialmod.chisel.shift_down": "Cet Item change certains Blocs",

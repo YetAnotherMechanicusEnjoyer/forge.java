@@ -21,46 +21,45 @@ import java.util.List;
 import java.util.Map;
 
 public class ChiselItem extends Item {
-    private static final Map<Block, Block> CHISEL_MAP =
-            Map.of(
-                    Blocks.STONE, Blocks.STONE_BRICKS,
-                    Blocks.END_STONE, Blocks.END_STONE_BRICKS,
-                    Blocks.DEEPSLATE, Blocks.DEEPSLATE_BRICKS
-            );
+  private static final Map<Block, Block> CHISEL_MAP = Map.of(
+      Blocks.STONE, Blocks.STONE_BRICKS,
+      Blocks.END_STONE, Blocks.END_STONE_BRICKS,
+      Blocks.DEEPSLATE, Blocks.DEEPSLATE_BRICKS);
 
-    public ChiselItem(Properties pProperties) {
-        super(pProperties);
+  public ChiselItem(Properties pProperties) {
+    super(pProperties);
+  }
+
+  @Override
+  public @NotNull InteractionResult useOn(UseOnContext pContext) {
+    Level level = pContext.getLevel();
+    Block clickedBlock = level.getBlockState(pContext.getClickedPos()).getBlock();
+
+    if (CHISEL_MAP.containsKey(clickedBlock)) {
+      if (!level.isClientSide()) {
+        level.setBlockAndUpdate(pContext.getClickedPos(), CHISEL_MAP.get(clickedBlock).defaultBlockState());
+
+        pContext.getItemInHand().hurtAndBreak(1, ((ServerLevel) level), ((ServerPlayer) pContext.getPlayer()),
+            item -> {
+              assert pContext.getPlayer() != null;
+              pContext.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND);
+            });
+
+        level.playSound(null, pContext.getClickedPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS);
+      }
     }
 
-    @Override
-    public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        Level level = pContext.getLevel();
-        Block clickedBlock = level.getBlockState(pContext.getClickedPos()).getBlock();
+    return InteractionResult.SUCCESS;
+  }
 
-        if (CHISEL_MAP.containsKey(clickedBlock)) {
-            if (!level.isClientSide()) {
-                level.setBlockAndUpdate(pContext.getClickedPos(), CHISEL_MAP.get(clickedBlock).defaultBlockState());
-
-                pContext.getItemInHand().hurtAndBreak(1, ((ServerLevel) level), ((ServerPlayer) pContext.getPlayer()),
-                    item -> {
-                        assert pContext.getPlayer() != null;
-                        pContext.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND);
-                    });
-
-                level.playSound(null, pContext.getClickedPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS);
-            }
-        }
-
-        return InteractionResult.SUCCESS;
+  @Override
+  public void appendHoverText(@NotNull ItemStack pStack, @NotNull TooltipContext pContext,
+      @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
+    if (Screen.hasShiftDown()) {
+      pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.chisel.shift_down"));
+    } else {
+      pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.chisel"));
     }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack pStack, @NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag) {
-        if (Screen.hasShiftDown()) {
-            pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.chisel.shift_down"));
-        } else {
-            pTooltipComponents.add(Component.translatable("tooltip.tutorialmod.chisel"));
-        }
-        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
-    }
+    super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+  }
 }
